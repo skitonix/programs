@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo/test by nick</title>
+</head>
+<body>
+  <h1>Comment Box</h1>
+
+  <form id="commentForm">
+    <input type="text" id="commentInput" placeholder="Type your comment here..." size="50">
+    <button type="submit">Post</button>
+  </form>
+
+  <h2>Comments:</h2>
+  <div id="comments"></div>
+
+  <script>
+    const form = document.getElementById("commentForm");
+    const comments = document.getElementById("comments");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const input = document.getElementById("commentInput").value;
+      // 🚨 Vulnerable line: directly inserts user input without escaping
+      comments.innerHTML += `<p>${input}</p>`;
+    });
+  </script>
+</body>
+</html>
